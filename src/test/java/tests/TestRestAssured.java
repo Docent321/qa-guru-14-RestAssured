@@ -1,74 +1,89 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
+import static tests.spec.Spec.*;
 
-public class TestRestAssured {
+public class TestRestAssured extends TestBase {
 
-   @Test
-   void singlUserTest(){
+    @DisplayName("Вызов пользователя")
+    @Test
+    void singlUserTest(){
         given()
+                .spec(request)
                 .when()
-                .get("https://reqres.in/api/users/2")
+                .get("/users/2")
                 .then()
-                .body("data.first_name", is("Janet"));
-   }
+                .spec(responseSpec200)
+                .body("data.first_name", is("Janet"))
+                .log().body();
+    }
 
 
-    String inputDataCreate = "{\"name\": \"morpheus\", " +
-            "\"job\": \"leader\"}";
+    @DisplayName("Создание юзера, надо вынести данные в отдельный файл")
     @Test
     void createTest(){
+        String inputDataCreate = "{\"name\": \"morpheus\", " +
+                "\"job\": \"jobleader\"}";
         given()
+                .spec(request)
                 .body(inputDataCreate)
-                .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
-                .body("name", is("morpheus"));
+                .spec(responseSpec201)
+                .body("name", is("morpheus"))
+                .log().body();;
     }
 
 
-
-    String inputDataUpdate = "{\"name\": \"morpheus\", " +
-            "\"job\": \"zion resident\"}";
+    @DisplayName("Изменение пользователя, надо вынести данные в отдельный файл")
     @Test
     void updateTest(){
+        String inputDataUpdate = "{\"name\": \"morpheus\", " +
+                "\"job\": \"zion resident\"}";
         given()
+                .spec(request)
                 .body(inputDataUpdate)
-                .contentType(JSON)
                 .when()
-                .put("https://reqres.in/api/users")
+                .put("/users")
                 .then()
-                .body("job", is("zion resident"));
+                .spec(responseSpec200)
+                .body("job", is("zion resident"))
+                .log().body();
     }
 
+
+    @DisplayName("Удаление пользователя")
     @Test
     void deleteTest(){
         given()
+                .spec(request)
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("/users/2")
                 .then()
-                .statusCode(204);
+                .spec(responseSpec204)
+                .log().body();
     }
 
 
-    String inputDataRegister = "{\"email\": \"eve.holt@reqres.in\", " +
-            "\"password\": \"pistol\"}";
+
+    @DisplayName("Регистрация пользователя, надо вынести данные в отдельный файл")
     @Test
     void registerSuccessfulTest(){
+        String inputDataRegister = "{\"email\": \"eve.holt@reqres.in\", " +
+                "\"password\": \"pistol\"}";
         given()
+                .spec(request)
                 .body(inputDataRegister)
-                .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .spec(responseSpec200)
+                .body("token", is("QpwL5tke4Pnpja7X4"))
+                .log().body();
     }
-
-
-
 }

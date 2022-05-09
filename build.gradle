@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 repositories {
@@ -9,13 +10,34 @@ repositories {
 dependencies {
     testImplementation(
             "io.rest-assured:rest-assured:5.0.1",
+            "io.qameta.allure:allure-rest-assured:2.17.3",
+            "io.rest-assured:json-schema-validator:5.0.1",
             "org.junit.jupiter:junit-jupiter:5.8.2",
-            "org.slf4j:slf4j-simple:1.7.36")
+            "org.slf4j:slf4j-simple:1.7.36",
+            "org.assertj:assertj-core:3.22.0")
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
+
+allure {
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.17.3")
+            }
+        }
+
+    }
+    report {
+        version.set("2.17.3")
+    }
+}
+
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
@@ -33,7 +55,6 @@ tasks.withType(Test) {
 
     testLogging {
         lifecycle {
-//            events "started", "failed"
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
