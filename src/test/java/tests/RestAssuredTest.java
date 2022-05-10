@@ -47,7 +47,7 @@ public class RestAssuredTest extends TestBase {
         assertThat(UserResponse.getCreatedAt()).hasSizeGreaterThan(10);
     }
 
-    @DisplayName("Изменение пользователя, надо вынести данные в отдельный файл")
+    @DisplayName("Изменение пользователя")
     @Test
     void updateTest(){
 
@@ -82,7 +82,7 @@ public class RestAssuredTest extends TestBase {
                 .log().body();
     }
 
-    @DisplayName("Регистрация пользователя, надо вынести данные в отдельный файл")
+    @DisplayName("Регистрация пользователя")
     @Test
     void registerSuccessfulTest(){
 
