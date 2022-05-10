@@ -50,7 +50,6 @@ public class RestAssuredTest extends TestBase {
     @DisplayName("Изменение пользователя")
     @Test
     void updateTest(){
-
         CredentialsUpdateModel credentialsUpdateModel = new CredentialsUpdateModel();
         credentialsUpdateModel.setName("morpheus");
         credentialsUpdateModel.setJob("zion resident");
@@ -85,7 +84,6 @@ public class RestAssuredTest extends TestBase {
     @DisplayName("Регистрация пользователя")
     @Test
     void registerSuccessfulTest(){
-
         CredentialsRegisterModel credentialsRegisterModel = new CredentialsRegisterModel();
         credentialsRegisterModel.setEmail("eve.holt@reqres.in");
         credentialsRegisterModel.setPassword("pistol");
