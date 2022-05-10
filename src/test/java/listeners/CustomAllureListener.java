@@ -1,4 +1,4 @@
-package tests.listeners;
+package listeners;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 
