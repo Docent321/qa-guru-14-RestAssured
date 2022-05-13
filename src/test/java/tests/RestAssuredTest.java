@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestAssuredTest extends TestBase {
 
+    @Test
     @Tag("api")
     @Owner("AlexDonskov")
     @DisplayName("Вызов пользователя")
-    @Test
-    void singlUserTest(){
+    void singlUserTest() {
         given()
                 .spec(request)
                 .when()
@@ -28,24 +28,24 @@ public class RestAssuredTest extends TestBase {
                 .log().body();
     }
 
+    @Test
     @Tag("api")
     @Owner("AlexDonskov")
     @DisplayName("Создание пользователя")
-    @Test
-    void createTest(){
+    void createTest() {
         CredentialsCreateModel credentialsCreateModel = new CredentialsCreateModel();
         credentialsCreateModel.setName("morpheus");
         credentialsCreateModel.setJob("jobleader");
 
         GenerateCreateResponse UserResponse =
-        given()
-                .spec(request)
-                .body(credentialsCreateModel)
-                .when()
-                .post("/users")
-                .then()
-                .spec(responseSpec201)
-                .extract().as(GenerateCreateResponse.class);
+                given()
+                        .spec(request)
+                        .body(credentialsCreateModel)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(responseSpec201)
+                        .extract().as(GenerateCreateResponse.class);
 
         assertThat(UserResponse.getName()).isEqualTo("morpheus");
         assertThat(UserResponse.getJob()).isEqualTo("jobleader");
@@ -53,35 +53,35 @@ public class RestAssuredTest extends TestBase {
         assertThat(UserResponse.getCreatedAt()).hasSizeGreaterThan(10);
     }
 
+    @Test
     @Tag("api")
     @Owner("AlexDonskov")
     @DisplayName("Изменение пользователя")
-    @Test
-    void updateTest(){
+    void updateTest() {
         CredentialsUpdateModel credentialsUpdateModel = new CredentialsUpdateModel();
         credentialsUpdateModel.setName("morpheus");
         credentialsUpdateModel.setJob("zion resident");
 
-        GenerateUpdateResponse UpdateResponse=
-        given()
-                .spec(request)
-                .body(credentialsUpdateModel)
-                .when()
-                .put("/users")
-                .then()
-                .spec(responseSpec200)
-                .extract().as(GenerateUpdateResponse.class);
+        GenerateUpdateResponse UpdateResponse =
+                given()
+                        .spec(request)
+                        .body(credentialsUpdateModel)
+                        .when()
+                        .put("/users")
+                        .then()
+                        .spec(responseSpec200)
+                        .extract().as(GenerateUpdateResponse.class);
 
         assertThat(UpdateResponse.getName()).isEqualTo("morpheus");
         assertThat(UpdateResponse.getJob()).isEqualTo("zion resident");
         assertThat(UpdateResponse.getUpdatedAt()).hasSizeGreaterThan(10);
     }
 
+    @Test
     @Tag("api")
     @Owner("AlexDonskov")
     @DisplayName("Удаление пользователя")
-    @Test
-    void deleteTest(){
+    void deleteTest() {
         given()
                 .spec(request)
                 .when()
@@ -91,24 +91,24 @@ public class RestAssuredTest extends TestBase {
                 .log().body();
     }
 
+    @Test
     @Tag("api")
     @Owner("AlexDonskov")
     @DisplayName("Регистрация пользователя")
-    @Test
-    void registerSuccessfulTest(){
+    void registerSuccessfulTest() {
         CredentialsRegisterModel credentialsRegisterModel = new CredentialsRegisterModel();
         credentialsRegisterModel.setEmail("eve.holt@reqres.in");
         credentialsRegisterModel.setPassword("pistol");
 
         GenerateRegisterResponse RegisterResponse =
-        given()
-                .spec(request)
-                .body(credentialsRegisterModel)
-                .when()
-                .post("/register")
-                .then()
-                .spec(responseSpec200)
-                .extract().as(GenerateRegisterResponse.class);
+                given()
+                        .spec(request)
+                        .body(credentialsRegisterModel)
+                        .when()
+                        .post("/register")
+                        .then()
+                        .spec(responseSpec200)
+                        .extract().as(GenerateRegisterResponse.class);
 
         assertThat(RegisterResponse.getId()).isEqualTo(4);
         assertThat(RegisterResponse.getToken()).hasSizeGreaterThan(10);
