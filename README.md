@@ -16,25 +16,25 @@
 <p align="center">
 <img width="6%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg">
 <img width="6%" title="Java" src="images/logo/Java.svg">
-<img width="6%" title="Selenide" src="images/logo/Selenide.svg">
 <img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
 <img width="6%" title="Allure Report" src="images/logo/Allure_Report.svg">
 <img width="6%" title="Gradle" src="images/logo/Gradle.svg">
 <img width="6%" title="JUnit5" src="images/logo/JUnit5.svg">
 <img width="6%" title="GitHub" src="images/logo/GitHub.svg">
+<img width="6%" title="Rest-Assured" src="images/logo/Rest-Assured.png">
 <img width="6%" title="Jenkins" src="images/logo/Jenkins.svg">
 <img width="6%" title="TestOps" src="images/logo/allure-TT-logo.svg">
 </p>
 
 ## :notebook_with_decorative_cover: Реализованные проверки
-- Вызов пользователя
 - Создание пользователя
+- Вызов пользователя
 - Изменение пользователя
 - Удаление пользователя
 - Регистрация пользователя
 
 ## :electric_plug: Сборка в Jenkins
-### <a target="_blank"> https://jenkins.autotests.cloud/job/011-AlexDonskov-ui-diplom/ </a>
+### <a target="_blank"> https://jenkins.autotests.cloud/job/011-AlexDonskov-api-diplom/ </a>
 <p align="center">
 <img title="Jenkins Dashboard" src="images/screenshots/jenkins-dashboard.png">
 </p>
