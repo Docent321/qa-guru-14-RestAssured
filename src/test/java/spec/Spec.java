@@ -6,9 +6,9 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
-import static org.hamcrest.Matchers.containsString;
 
 public class Spec {
+
     public static RequestSpecification request = with()
             .baseUri("https://reqres.in")
             .basePath("/api")

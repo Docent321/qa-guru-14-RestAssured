@@ -1,7 +1,9 @@
 package tests;
 
+import io.qameta.allure.Owner;
 import models.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestAssuredTest extends TestBase {
 
+    @Tag("api")
+    @Owner("AlexDonskov")
     @DisplayName("Вызов пользователя")
     @Test
     void singlUserTest(){
@@ -24,6 +28,8 @@ public class RestAssuredTest extends TestBase {
                 .log().body();
     }
 
+    @Tag("api")
+    @Owner("AlexDonskov")
     @DisplayName("Создание пользователя")
     @Test
     void createTest(){
@@ -47,10 +53,11 @@ public class RestAssuredTest extends TestBase {
         assertThat(UserResponse.getCreatedAt()).hasSizeGreaterThan(10);
     }
 
-    @DisplayName("Изменение пользователя, надо вынести данные в отдельный файл")
+    @Tag("api")
+    @Owner("AlexDonskov")
+    @DisplayName("Изменение пользователя")
     @Test
     void updateTest(){
-
         CredentialsUpdateModel credentialsUpdateModel = new CredentialsUpdateModel();
         credentialsUpdateModel.setName("morpheus");
         credentialsUpdateModel.setJob("zion resident");
@@ -70,6 +77,8 @@ public class RestAssuredTest extends TestBase {
         assertThat(UpdateResponse.getUpdatedAt()).hasSizeGreaterThan(10);
     }
 
+    @Tag("api")
+    @Owner("AlexDonskov")
     @DisplayName("Удаление пользователя")
     @Test
     void deleteTest(){
@@ -82,10 +91,11 @@ public class RestAssuredTest extends TestBase {
                 .log().body();
     }
 
-    @DisplayName("Регистрация пользователя, надо вынести данные в отдельный файл")
+    @Tag("api")
+    @Owner("AlexDonskov")
+    @DisplayName("Регистрация пользователя")
     @Test
     void registerSuccessfulTest(){
-
         CredentialsRegisterModel credentialsRegisterModel = new CredentialsRegisterModel();
         credentialsRegisterModel.setEmail("eve.holt@reqres.in");
         credentialsRegisterModel.setPassword("pistol");

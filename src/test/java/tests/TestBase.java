@@ -11,5 +11,4 @@ public class TestBase {
     static void beforeAll() {
         RestAssured.filters(withCustomTemplates());
     }
-
 }
